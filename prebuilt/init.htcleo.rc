@@ -45,11 +45,6 @@ on boot
     chown system system /data/misc/screen_lock_status
     chmod 644 /data/misc/screen_lock_status
 
-    # Write value must be consistent with the above properties.
-    # Note that the driver only supports 6 slots, so we have HOME_APP at the
-    # same memory level as services.
-    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,7,14,15
-
     # Permissions for liblights
     chown system system /sys/class/leds/green/brightness
     chown system system /sys/class/leds/green/blink
