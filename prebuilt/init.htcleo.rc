@@ -181,9 +181,6 @@ on boot
     chmod 666 /sys/class/i2c-adapter/i2c-0/0-0018/scale
     chmod 666 /sys/class/i2c-adapter/i2c-0/0-0019/scale
 
-    # Power Management
-    # write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 40000
-
     # Overwrite framework low memory killer minfree setting
     write /sys/module/lowmemorykiller/parameters/minfree 3584,4096,6144,7168,7680,8192
 
