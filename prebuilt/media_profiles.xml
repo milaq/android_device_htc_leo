@@ -94,14 +94,14 @@
         
         <EncoderProfile quality="high" fileFormat="mp4" duration="60">
             <Video codec="m4v"
-                   bitRate="2000000"
+                   bitRate="6000000"
                    width="800"
                    height="480"
-                   frameRate="30" />
+                   frameRate="24" />
 
             <Audio codec="aac"
-                   bitRate="48000"
-                   sampleRate="22050"
+                   bitRate="96000"
+                   sampleRate="16000"
                    channels="1" />
         </EncoderProfile>
 
