@@ -39,7 +39,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_NO_BOOTLOADER := true
 
 BOARD_KERNEL_BASE := 0x11800000
-BOARD_KERNEL_CMDLINE := no_console_suspend=1 wire.search_count=5
+BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
 
 TARGET_BOARD_PLATFORM := qsd8k
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
