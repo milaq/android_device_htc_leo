@@ -69,7 +69,7 @@ PRODUCT_PACKAGES += \
 
 
 # leo uses high-density artwork where available 
-PRODUCT_LOCALES := hdpi
+PRODUCT_LOCALES := en_US
 
 PRODUCT_COPY_FILES += \
     device/htc/leo/prebuilt/vold.fstab:system/etc/vold.fstab
