@@ -67,10 +67,6 @@ PRODUCT_PACKAGES += \
     libhtc_ril_wrapper
 
 
-
-# leo uses high-density artwork where available 
-PRODUCT_LOCALES := en_US
-
 PRODUCT_COPY_FILES += \
     device/htc/leo/prebuilt/vold.fstab:system/etc/vold.fstab
 
