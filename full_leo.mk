@@ -24,8 +24,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, device/htc/leo/leo_eu.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
-PRODUCT_LOCALES := en_US
-
 # Leo uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
 
