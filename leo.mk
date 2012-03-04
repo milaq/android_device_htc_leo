@@ -27,6 +27,10 @@ PRODUCT_COPY_FILES += \
     device/htc/leo/prebuilt/ueventd.htcleo.rc:root/ueventd.htcleo.rc \
     device/htc/leo/prebuilt/logo.rle:root/logo.rle \
 
+# Copy the postrecoveryboot.sh to the relevant directory
+PRODUCT_COPY_FILES += \
+    device/htc/leo/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
