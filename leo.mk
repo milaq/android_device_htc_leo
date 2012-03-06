@@ -79,11 +79,6 @@ PRODUCT_COPY_FILES += \
     device/htc/leo/prebuilt/keylayout/leo-keypad.kcm.bin:system/usr/keychars/leo-keypad.kcm.bin \
     device/htc/leo/prebuilt/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
 
-# Firmware
-PRODUCT_COPY_FILES += \
-    device/htc/leo/prebuilt/firmware/fw_bcm4329.bin:system/etc/firmware/fw_bcm4329.bin \
-    device/htc/leo/prebuilt/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin
-
 #GSM APN LIST
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
