@@ -80,22 +80,22 @@
     <CamcorderProfiles>
 
         <EncoderProfile quality="hd" fileFormat="mp4" duration="60">
-            <Video codec="m4v"
+            <Video codec="h264"
                    bitRate="6000000"
-                   width="800"
-                   height="480"
+                   width="1280"
+                   height="720"
                    frameRate="24" />
 
             <Audio codec="aac"
                     bitRate="96000"
-                    sampleRate="16000"
+                    sampleRate="48000"
                     channels="1" />
         </EncoderProfile>
         
         <EncoderProfile quality="high" fileFormat="mp4" duration="60">
             <Video codec="m4v"
                    bitRate="6000000"
-                   width="720"
+                   width="800"
                    height="480"
                    frameRate="24" />
 
