@@ -36,7 +36,7 @@ ro.sf.lcd_density=240
 mobiledata.interfaces=rmnet0,rmnet1,rmnet2,ppp0
 
 # This is a high density device with more memory, so larger vm heaps for it.
-dalvik.vm.heapsize=32m
+dalvik.vm.heapsize=48m
 
 # Scrolling cache 0:enable, 1:default enable, 2:default disable, 3:disable
 persist.sys.scrollingcache=2
