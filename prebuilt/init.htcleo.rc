@@ -70,9 +70,6 @@ on boot
     setprop ro.ril.def.agps.mode 2
 
     # performance tweaks for flash
-    write /sys/block/mtdblock0/bdi/read_ahead_kb 4
-    write /sys/block/mtdblock1/bdi/read_ahead_kb 4
-    write /sys/block/mtdblock2/bdi/read_ahead_kb 4
     write /sys/block/mtdblock3/bdi/read_ahead_kb 4
     write /sys/block/mtdblock4/bdi/read_ahead_kb 4
     write /sys/block/mtdblock5/bdi/read_ahead_kb 4
