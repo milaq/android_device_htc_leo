@@ -98,8 +98,6 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 
-WEBCORE_ACCELERATED_SCROLLING := true
-
 TARGET_PREBUILT_KERNEL := device/htc/leo/prebuilt/kernel
 TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/leo/prebuilt/recovery_kernel
 
