@@ -80,6 +80,11 @@ mkdir $REPACK/ota
 cd $REPACK/ota
 printf "Unpacking $OTAPACKAGE..."
 unzip $QUIET $OTAPACKAGE
+
+echo
+printf "leo has limited diskspace so lets remove some unwanted stuff..."
+rm -rf $REPACK/ota/system/tts
+
 echo
 cd $REPACK/ota/system/framework
 $OPTICHARGER framework-res.apk
