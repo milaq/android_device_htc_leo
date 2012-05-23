@@ -113,5 +113,8 @@ $(call inherit-product, device/htc/leo/media_a1026.mk)
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
+# goo.im stuff
+$(call inherit-product, device/htc/leo/goo.mk)
+
 PRODUCT_NAME := htc_leo
 PRODUCT_DEVICE := leo
