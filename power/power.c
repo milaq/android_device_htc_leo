@@ -99,6 +99,26 @@ static int get_scaling_governor(char *governor, size_t size)
     return 0;
 }
 
+static void configure_governor()
+{
+    qsd8k_power_set_interactive(NULL, 1);
+
+    if (strncmp(governor, "ondemand", 8) == 0) {
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/up_threshold", "90");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/io_is_busy", "1");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor", "2");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_rate", "50000");
+
+    } else if (strncmp(governor, "interactive", 11) == 0) {
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/min_sample_time", "60000");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/io_is_busy", "1");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/hispeed_freq", "729600");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load", "50");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay", "100000");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/timer_rate", "20000");
+    }
+}
+
 static int boostpulse_open(struct qsd8k_power_module *qsd8k)
 {
     char buf[80];
@@ -131,6 +151,8 @@ static int boostpulse_open(struct qsd8k_power_module *qsd8k)
 
 static void qsd8k_power_init(struct power_module *module)
 {
+    get_scaling_governor();
+    configure_governor();
 }
 
 static void qsd8k_power_set_interactive(struct power_module *module, int on)
