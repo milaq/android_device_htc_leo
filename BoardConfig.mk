@@ -47,7 +47,6 @@ ARCH_ARM_HAVE_VFP := true
 TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/htc/leo/prebuilt/kernel
 TARGET_KERNEL_SOURCE := kernel/htc/leo
 TARGET_KERNEL_CONFIG := htcleo_defconfig
 
