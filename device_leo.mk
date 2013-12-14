@@ -25,12 +25,58 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += device/htc/leo/overlay
 
+# make fallback to mdpi possible
+# e.g. for maintaining crisp assets on 160dpi
+PRODUCT_AAPT_CONFIG := normal hdpi mdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi mdpi
+
+# Low Mem props
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.low_ram=true \
+    dalvik.vm.jit.codecachesize=0
+
+# limit bg tasks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.fw.bg_apps_limit=12
+
+# Audio
+PRODUCT_PACKAGES += \
+    audio.usb.default \
+    audio.a2dp.default \
+    audio.primary.qsd8k \
+    audio_policy.qsd8k
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.qsd8k
+
+# Display
+PRODUCT_PACKAGES += \
+    copybit.qsd8k \
+    gralloc.qsd8k \
+    hwcomposer.qsd8k
+
+# Omx
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libOmxVdec \
+#    libOmxVidEnc \
+    libstagefrighthw
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
+
 # Packages
 PRODUCT_PACKAGES += \
 	sensors.htcleo \
 	lights.htcleo \
  	gps.htcleo \
-	leo-reference-ril
+	leo-reference-ril \
+    power.qsd8k \
+    com.android.future.usb.accessory \
+    libnetcmdiface
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -39,6 +85,11 @@ PRODUCT_COPY_FILES += \
 	device/htc/leo/ramdisk/ueventd.htcleo.rc:root/ueventd.htcleo.rc \
 	device/htc/leo/ramdisk/logo.rle:root/logo.rle \
 	device/htc/leo/ramdisk/fstab.htcleo:root/fstab.htcleo
+
+# Configs
+PRODUCT_COPY_FILES += \
+    device/htc/leo/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/leo/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # GSM APN list
 PRODUCT_COPY_FILES += \
@@ -89,6 +140,20 @@ PRODUCT_COPY_FILES += \
 	device/htc/leo/clk/etc/ppp/ppp-gprs.pid:system/etc/ppp/ppp-gprs.pid \
 	device/htc/leo/clk/etc/ppp/resolv.conf:system/etc/ppp/resolv.conf
 
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distict.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
 # Kernel modules
 ifeq ($(BUILD_KERNEL),false)
 PRODUCT_COPY_FILES += $(shell \
@@ -101,16 +166,16 @@ endif
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml 
 
-# Leo uses high-density artwork where available
-PRODUCT_LOCALES += hdpi mdpi
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb
 
-# QSD8K Commomn Stuff
-$(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.sf.lcd_density=240
 
-# Vendor
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product, vendor/htc/leo/leo-vendor.mk)
-
-# Discard inherited values and use our own instead.
-PRODUCT_NAME := full_leo
-PRODUCT_DEVICE := leo
-PRODUCT_MODEL := Full Android on leo
