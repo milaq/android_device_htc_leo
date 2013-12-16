@@ -37,7 +37,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # limit bg tasks
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.fw.bg_apps_limit=12
+    sys.mem.max_hidden_apps=12
 
 # Audio
 PRODUCT_PACKAGES += \
