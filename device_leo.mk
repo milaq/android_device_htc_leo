@@ -30,11 +30,6 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/leo/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi mdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi mdpi
 
-# Low Mem props
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.low_ram=true \
-    dalvik.vm.jit.codecachesize=0
-
 # limit bg tasks
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.mem.max_hidden_apps=12
