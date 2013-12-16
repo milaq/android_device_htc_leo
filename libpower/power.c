@@ -41,6 +41,8 @@ struct qsd8k_power_module {
     int boostpulse_warned;
 };
 
+static char governor[20];
+
 static void sysfs_write(char *path, char *s)
 {
     char buf[80];
@@ -89,14 +91,62 @@ static int sysfs_read(char *path, char *s, size_t l)
     return len;
 }
 
-static int get_scaling_governor(char *governor, size_t size)
+static int get_scaling_governor()
 {
-
-    if (sysfs_read("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
-             governor, size) < 0)
+    if (sysfs_read("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", governor,
+                sizeof(governor)) == -1) {
         return -1;
+    } else {
+        // Strip newline at the end.
+        int len = strlen(governor);
+
+        len--;
+
+        while (len >= 0 && (governor[len] == '\n' || governor[len] == '\r'))
+            governor[len--] = '\0';
+    }
 
     return 0;
+}
+
+static void qsd8k_power_set_interactive(struct power_module *module, int on)
+{
+    /*
+     * Dynamically change cpu settings depending on screen on/off state
+     */
+
+    char buf[FREQ_BUF_SIZE];
+    int len = -1;
+    char governor[80];
+    struct qsd8k_power_module *qsd8k = (struct qsd8k_power_module *) module;
+
+    if (!on) { /* store current max freq so it can be restored */
+        len = sysfs_read("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+                              buf, sizeof(buf));
+        if (len > 0 && strncmp(buf, screenoff_max_freq,
+                                strlen(screenoff_max_freq)) != 0) {
+            strcpy(scaling_max_freq, buf);
+        }
+    }
+
+    /* Reduce max frequency */
+    sysfs_write("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+                on ? scaling_max_freq : screenoff_max_freq);
+
+    if (get_scaling_governor() < 0) {
+        ALOGE("Can't read scaling governor.");
+        qsd8k->boostpulse_warned = 1;
+    } else {
+        /* Increase sampling rate for ondemand */
+        if (strncmp(governor, "ondemand", 8) == 0)
+            sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_rate",
+                        on ? "50000" : "500000");
+    }
+
+    /* Increase ksm sleep interval */
+    sysfs_write("/sys/kernel/mm/ksm/sleep_millisecs",
+                on ? "1000" : "5000");
+
 }
 
 static void configure_governor()
@@ -127,7 +177,7 @@ static int boostpulse_open(struct qsd8k_power_module *qsd8k)
     pthread_mutex_lock(&qsd8k->lock);
 
     if (qsd8k->boostpulse_fd < 0) {
-        if (get_scaling_governor(governor, sizeof(governor)) < 0) {
+        if (get_scaling_governor() < 0) {
             ALOGE("Can't read scaling governor.");
             qsd8k->boostpulse_warned = 1;
         } else {
@@ -153,46 +203,6 @@ static void qsd8k_power_init(struct power_module *module)
 {
     get_scaling_governor();
     configure_governor();
-}
-
-static void qsd8k_power_set_interactive(struct power_module *module, int on)
-{
-    /*
-     * Dynamically change cpu settings depending on screen on/off state
-     */
-
-    char buf[FREQ_BUF_SIZE];
-    int len = -1;
-    char governor[80];
-    struct qsd8k_power_module *qsd8k = (struct qsd8k_power_module *) module;
-
-    if (!on) { /* store current max freq so it can be restored */
-        len = sysfs_read("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
-                              buf, sizeof(buf));
-        if (len > 0 && strncmp(buf, screenoff_max_freq,
-                                strlen(screenoff_max_freq)) != 0) {
-            strcpy(scaling_max_freq, buf);
-        }
-    }
-
-    /* Reduce max frequency */
-    sysfs_write("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
-                on ? scaling_max_freq : screenoff_max_freq);
-
-    if (get_scaling_governor(governor, sizeof(governor)) < 0) {
-        ALOGE("Can't read scaling governor.");
-        qsd8k->boostpulse_warned = 1;
-    } else {
-        /* Increase sampling rate for ondemand */
-        if (strncmp(governor, "ondemand", 8) == 0)
-            sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_rate",
-                        on ? "50000" : "500000");
-    }
-
-    /* Increase ksm sleep interval */
-    sysfs_write("/sys/kernel/mm/ksm/sleep_millisecs",
-                on ? "1000" : "5000");
-
 }
 
 static void qsd8k_power_hint(struct power_module *module, power_hint_t hint,
