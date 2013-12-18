@@ -1,5 +1,5 @@
-# Pull all dictionaries (This makes sure it gets called)
-TARGET_USE_KEYBOARD := international
+# Release name
+PRODUCT_RELEASE_NAME := HD2
 
 # Call this first so apn list is actually copied
 $(call inherit-product, vendor/cm/config/gsm.mk)
@@ -18,4 +18,4 @@ PRODUCT_DEVICE := leo
 PRODUCT_NAME := cm_leo
 
 # Set build fingerprint / ID / Product Name ect.
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=leo BUILD_FINGERPRINT=google/htc_leo/leo:4.2.2/JDQ39/573038:user/release-keys PRIVATE_BUILD_DESC="leo-user 4.2.2 JDQ39 573038 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=leo BUILD_FINGERPRINT=google/htc_leo/leo:4.3/JWR66V/737497:user/release-keys PRIVATE_BUILD_DESC="leo-user 4.3 JWR66V 737497 release-keys"
