@@ -49,6 +49,7 @@ TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/htc/leo
 TARGET_KERNEL_CONFIG := htcleo_defconfig
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 
 # FPU compilation flags
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
