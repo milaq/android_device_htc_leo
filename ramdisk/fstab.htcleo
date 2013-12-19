@@ -1,11 +1,14 @@
-## Android fstab for HTCLEO
+# Android fstab file.
+#<src>                                         <mnt_point>  <type>  <mnt_flags and options>  <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
-#<label>                                       <mnt_point>            <type>          <mnt_flags and options>        <fs_mgr_flags>
-boot                                           /boot                  mtd             defaults                        defaults
-cache                                          /cache                 yaffs2          defaults                        defaults
-userdata                                       /data                  yaffs2          defaults                        defaults
-misc                                           /misc                  mtd             defaults                        defaults
-recovery                                       /recovery              mtd             defaults                        defaults
-system                                         /system                yaffs2          defaults                        defaults
+/dev/block/mmcblk0p2                           /system                ext4          noatime,barrier=0                                              wait
+/dev/block/mmcblk0p3                           /data                  ext4          noatime,nosuid,nodev,barrier=0,data=ordered,noauto_da_alloc    wait
 
-/devices/platform/msm_sdcc.2/mmc_host/mmc1     /storage/sdcard0       vfat            defaults                        voldmanaged=sdcard:1
+boot                                           /boot                  mtd           defaults                                                       defaults
+cache                                          /cache                 yaffs2        defaults                                                       defaults
+misc                                           /misc                  mtd           defaults                                                       defaults
+recovery                                       /recovery              mtd           defaults                                                       defaults
+
+/devices/platform/msm_sdcc.2/mmc_host/mmc1     /storage/sdcard0       vfat          defaults                                                       voldmanaged=sdcard:1
