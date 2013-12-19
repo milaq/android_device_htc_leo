@@ -154,7 +154,7 @@ PRODUCT_COPY_FILES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb
+    persist.sys.usb.config=mass_storage,adb
 
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.sf.lcd_density=240
