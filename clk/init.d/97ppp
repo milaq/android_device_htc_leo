@@ -1,0 +1,17 @@
+#!/system/bin/sh
+
+if [ ! -f /system/etc/ppp/options.smd ]
+then
+  echo "preparing ppp for data connections..."
+  mount -o remount,rw /system
+  mkdir /data/misc/ppp
+  cp /system/etc/ppp/* /vendor/ppp/
+  cp /vendor/ppp/* /data/misc/ppp/
+  chown 0.1001 /data/misc/ppp/*
+  chmod 775 /data/misc/ppp/*
+  rm -rf /system/etc/ppp
+  ln -s /data/misc/ppp/ /system/etc/ppp
+  chown 0.0 /system/bin/pppd
+  chmod 4755 /system/bin/pppd
+  mount -o remount,ro /system
+fi

@@ -1,0 +1,11 @@
+#!/system/bin/sh
+
+setprop net.ppp0.dns1 $DNS1
+setprop net.ppp0.dns2 $DNS2
+
+touch /etc/ppp/ppp0.pid
+chmod 777 /etc/ppp/ppp0.pid
+
+echo "nameserver $DNS1" > /etc/ppp/resolv.conf
+echo "nameserver $DNS2" >> /etc/ppp/resolv.conf
+

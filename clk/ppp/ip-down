@@ -1,0 +1,3 @@
+#!/system/bin/sh
+
+/bin/rm /etc/ppp/ppp0.pid
