@@ -122,17 +122,18 @@ PRODUCT_COPY_FILES += \
 
 # ppp
 PRODUCT_COPY_FILES += \
-	device/htc/leo/clk/init.d/97ppp:system/etc/init.d/97ppp \
-	device/htc/leo/clk/ppp/active:system/vendor/ppp/active \
-	device/htc/leo/clk/ppp/chap-secrets:system/vendor/ppp/chap-secrets \
-	device/htc/leo/clk/ppp/ip-down:system/vendor/ppp/ip-down \
-	device/htc/leo/clk/ppp/ip-up:system/vendor/ppp/ip-up \
-	device/htc/leo/clk/ppp/options:system/vendor/ppp/options \
-	device/htc/leo/clk/ppp/options.smd:system/vendor/ppp/options.smd \
-	device/htc/leo/clk/ppp/options.smd1:system/vendor/ppp/options.smd1 \
-	device/htc/leo/clk/ppp/pap-secrets:system/vendor/ppp/pap-secrets \
-	device/htc/leo/clk/ppp/ppp-gprs.pid:system/vendor/ppp/ppp-gprs.pid \
-	device/htc/leo/clk/ppp/resolv.conf:system/vendor/ppp/resolv.conf
+	device/htc/leo/clk/ppp:system/ppp \
+	device/htc/leo/clk/etc/init.d/97ppp:system/etc/init.d/97ppp \
+	device/htc/leo/clk/etc/ppp/active:system/vendor/ppp/active \
+	device/htc/leo/clk/etc/ppp/chap-secrets:system/vendor/ppp/chap-secrets \
+	device/htc/leo/clk/etc/ppp/ip-down:system/vendor/ppp/ip-down \
+	device/htc/leo/clk/etc/ppp/ip-up:system/vendor/ppp/ip-up \
+	device/htc/leo/clk/etc/ppp/options:system/vendor/ppp/options \
+	device/htc/leo/clk/etc/ppp/options.smd:system/vendor/ppp/options.smd \
+	device/htc/leo/clk/etc/ppp/options.smd1:system/vendor/ppp/options.smd1 \
+	device/htc/leo/clk/etc/ppp/pap-secrets:system/vendor/ppp/pap-secrets \
+	device/htc/leo/clk/etc/ppp/ppp-gprs.pid:system/vendor/ppp/ppp-gprs.pid \
+	device/htc/leo/clk/etc/ppp/resolv.conf:system/vendor/ppp/resolv.conf
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
