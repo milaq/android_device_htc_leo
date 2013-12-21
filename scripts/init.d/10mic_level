@@ -3,8 +3,8 @@
 #Level range: 0-1000; -1 use level from acdb
 #Current levels (device_id):
 
-echo '0 400' > /proc/mic_level
-echo '1 600' > /proc/mic_level
+echo '0 500' > /proc/mic_level
+echo '1 700' > /proc/mic_level
 echo '2 800' > /proc/mic_level
 echo '3 800' > /proc/mic_level
 echo '4 800' > /proc/mic_level
