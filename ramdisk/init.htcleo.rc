@@ -226,3 +226,6 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
 service dspcrashd /system/bin/dspcrashd
+
+on property:dev.bootcomplete=1
+    write /sys/kernel/mm/ksm/run 1
