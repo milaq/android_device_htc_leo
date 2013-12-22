@@ -11,6 +11,7 @@ on fs
     # unmount yaffs2 partitions
     umount /system
     umount /data
+    write /sys/devices/virtual/bdi/179:0/read_ahead_kb 2048
     # Mount all partitions
     mount_all ./fstab.htcleo
 
