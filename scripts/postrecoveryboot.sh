@@ -1,16 +1,9 @@
 #!/sbin/sh
 
-sleep 2
+sleep 3
 
-if [[ "`grep clk= /proc/cmdline`" == "" ]]; then
-sed -i 's/\/boot\t\tmtd/\/boot\t\tyaffs2/g' /etc/recovery.fstab
-fi
+# sdcard readahead
+echo 2048 > /sys/devices/virtual/bdi/179:0/read_ahead_kb
 
-# Commented out as it may or may not require this
-#mount /dev/block/mmcblk0p2 /sd-ext | grep sd-ext | awk '{print $5}'
-#FS=`mount | grep sd-ext | awk '{print $5}'`
-#umount /sd-ext
-#sed -i 's/\/sd-ext\ \ \ \ \ auto/\/sd-ext\t\t'$FS'/g' /etc/recovery.fstab
-#cat >> /etc/fstab << EOF
-#/dev/block/mmcblk0p2 /sd-ext $FS rw
-#EOF
+# button b/l
+echo 255 > /sys/class/leds/button-backlight/brightness
