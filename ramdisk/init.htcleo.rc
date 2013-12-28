@@ -180,8 +180,8 @@ on boot
 
     # /system/lib/libqct-opt JNI native will write
     # mfreq to set CPU freq to max for performance
-    chown root.system /sys/devices/system/cpu/mfreq
-    chmod 220 /sys/devices/system/cpu/mfreq
+    chown root system /sys/devices/system/cpu/mfreq
+    chmod 0220 /sys/devices/system/cpu/mfreq
 
 #
 # Services Start here
