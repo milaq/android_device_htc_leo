@@ -28,10 +28,14 @@ ro.vendor.extension_library=/system/lib/libqc-opt.so
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=45
 
+# egl
 debug.sf.hw=1
 debug.composition.type=mdp
 ro.zygote.disable_gl_preload=true
 debug.gr.numframebuffers=2
+
+# lowmem
+ro.config.low_ram=true
 
 # camera
 debug.camcorder.disablemeta=1

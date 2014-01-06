@@ -30,11 +30,6 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/leo/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi mdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi mdpi
 
-# limit bg tasks
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.mem.max_hidden_apps=12 \
-    persist.service.zram=18
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.usb.default \
