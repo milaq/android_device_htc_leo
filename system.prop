@@ -31,6 +31,7 @@ wifi.supplicant_scan_interval=45
 debug.sf.hw=1
 debug.composition.type=mdp
 ro.zygote.disable_gl_preload=true
+ro.bq.gpu_to_cpu_unsupported=1
 debug.gr.numframebuffers=2
 
 # camera
