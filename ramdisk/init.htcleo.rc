@@ -1,8 +1,9 @@
 import init.htcleo.usb.rc
 
-on early-init
+on init
     export EXTERNAL_STORAGE /storage/sdcard0
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /storage/sdcard0 0700 root root
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard    
 
