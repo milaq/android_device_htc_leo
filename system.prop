@@ -37,6 +37,7 @@ debug.gr.numframebuffers=2
 
 # lowmem
 ro.config.low_ram=true
+persist.sys.force_highendgfx=true
 
 # camera
 debug.camcorder.disablemeta=1
