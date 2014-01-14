@@ -11,4 +11,4 @@ cache                                          /cache                 yaffs2    
 misc                                           /misc                  mtd           defaults                                                       defaults
 recovery                                       /recovery              mtd           defaults                                                       defaults
 
-/devices/platform/msm_sdcc.2/mmc_host/mmc1     auto                   vfat          defaults                                                       voldmanaged=sdcard0:1,noemulatedsd
+/devices/platform/msm_sdcc.2/mmc_host/mmc1     auto                   vfat          defaults                                                       voldmanaged=sdcard0:1,nonremovable,noemulatedsd
