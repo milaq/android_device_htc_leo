@@ -233,4 +233,7 @@
 
     <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">45765</integer>
 
+    <!-- Disable lockscreen translucent decor by default -->
+    <bool name="config_enableLockScreenTranslucentDecor">true</bool>
+
 </resources>
