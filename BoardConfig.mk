@@ -136,9 +136,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
 # Ril
 BOARD_USES_LEGACY_RIL := true
 
-# USB
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
-
 # Recovery
 TARGET_RECOVERY_FSTAB = device/htc/leo/ramdisk/fstab.htcleo
 RECOVERY_FSTAB_VERSION := 2
