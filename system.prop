@@ -37,6 +37,7 @@ debug.gr.numframebuffers=2
 
 # lowmem
 ro.config.low_ram=true
+ro.ksm.default=1
 persist.sys.force_highendgfx=true
 
 # camera
